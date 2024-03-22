@@ -2,6 +2,7 @@ let canvas;
 let ctx, perm;
 let cnvSize = 1200;
 
+
 let order = [];
 let count = 0;
 
@@ -12,7 +13,7 @@ let dpOrder = [];
 let returnDist, bestLengthACT, inter;
 
 let nodes = [];
-let totalNodes = 5;
+let totalNodes = 9;
 document.addEventListener("DOMContentLoaded", SetupCanvas);
 
 function SetupCanvas() {
@@ -45,7 +46,7 @@ function Render() {
   let vals2 = bestRoute(distMatrix.matrix, memoDist, 0, totalNodes);
   let smallest = minCost(distMatrix.matrix, vals2, 0, totalNodes);
   bestPath2 = [...getPath(distMatrix.matrix, vals2, 0, totalNodes)];
-  console.log(bestPath2,vals2,smallest);
+  console.log(bestPath2, vals2, smallest);
 
   perm = factorial(totalNodes - 1);
   console.log(smallest);
@@ -89,7 +90,7 @@ function Render() {
       nodes[newOrder[totalNodes - 1]]
     );
     inter = curLength + returnDist;
-  
+
     if (inter < bestLength) {
       bestLength = inter;
       for (i = 0; i < nodes.length; i++) {
@@ -99,7 +100,7 @@ function Render() {
       //console.log(bestPath, returnDist, curLength, bestLength)
     }
   }
- 
+
   for (let i = 0; i < totalNodes; i++) {
     dpOrder[i] = bestPath2[i];
   }
@@ -137,7 +138,7 @@ function Render() {
   ctx.fillText("Best  DP Distance: " + Math.ceil(best), 440, 560);
 
   if (percent <= 100) {
-     requestAnimationFrame(Render);
+    requestAnimationFrame(Render);
   }
 }
 
